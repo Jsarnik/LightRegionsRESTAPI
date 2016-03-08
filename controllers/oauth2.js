@@ -27,6 +27,13 @@ server.deserializeClient(function(id, callback) {
 
 // Register authorization code grant type
 server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, callback) {
+
+
+console.log('****** OAUTH: I GET THE CODE FOR OAUTH2 ******')
+console.log('****** client: ' + client)
+console.log('****** redirectUri: ' + redirectUri)
+console.log('****** user: ' + user)
+
   // Create a new authorization code
   var code = new Code({
     value: uid(16),
@@ -45,7 +52,19 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
 
 // Exchange authorization codes for access tokens
 server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, callback) {
+
+console.log('****** OAUTH: I GET THE BEARER TOKEN ******')
+console.log('****** client: ' + client)
+console.log('****** code: ' + code)
+console.log('****** redirectUri: ' + redirectUri)
+console.log('****** callback: ' + callback)
+
   Code.findOne({ value: code }, function (err, authCode) {
+
+    console.log('####### code:' + code)
+    console.log('####### authCode:' + authCode)
+
+
     if (err) { return callback(err); }
     if (authCode === undefined) { return callback(null, false); }
     if (client._id.toString() !== authCode.clientId) { return callback(null, false); }
@@ -70,12 +89,18 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
       });
     });
   });
+
+  
 }));
 
 
 // User authorization endpoint
 exports.authorization = [
   server.authorization(function(clientId, redirectUri, callback) {
+
+console.log('****** OAUTH: I LOAD THE EJS ******')
+console.log('****** clientId: ' + clientId)
+console.log('****** redirectUri: ' + redirectUri)
 
     Client.findOne({ id: clientId }, function (err, client) {
       if (err) { return callback(err); }

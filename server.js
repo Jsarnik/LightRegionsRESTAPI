@@ -11,7 +11,7 @@ var ejs = require('ejs');
 var session = require('express-session');
 var oauth2Controller = require('./controllers/oauth2');
 
-// Connect to the beerlocker MongoDB
+// Connect to the lightregions MongoDB
 mongoose.connect('mongodb://localhost:27017/lightregions');
 
 // Create our Express application

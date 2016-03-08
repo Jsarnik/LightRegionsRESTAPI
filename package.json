@@ -1,5 +1,5 @@
 {
-  "name": "beerlocker",
+  "name": "lightregionsAPI",
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
