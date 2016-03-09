@@ -52,8 +52,8 @@ router.route('/ProductionCategory/:id')
 
 //endpoint for /users 
 router.route('/users')
-	.get(authController.isAuthenticated, userController.getUsers)
-	.post(authController.isAuthenticated, userController.postUsers)
+	.get(userController.getUsers)
+	.post(userController.postUsers)
 
 //endpoint for /clients
 router.route('/clients')
