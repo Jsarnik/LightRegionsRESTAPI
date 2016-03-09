@@ -15,7 +15,7 @@ var oauth2Controller = require('./controllers/oauth2');
 //mongoose.connect('mongodb://localhost:27017/lightregions');
 
 // Connect to the lightregions MongoDB on mLab [Heroku]
-mongoose.connect('mongodb://ds045714-a.mlab.com:45714/lightregions');
+mongoose.connect('mongodb://ds045714-a.mlab.com:45714/heroku_85pg7kjb');
 
 // Create our Express application
 var app = express();
