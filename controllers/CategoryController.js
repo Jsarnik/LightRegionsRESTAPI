@@ -33,14 +33,15 @@ exports.postProductionCategory = function(req, res) {
   // Create a new instance of the Beer model
   var _cat = new Category();
   _cat.name = req.body.name;
+  _cat.sortOrder = req.body.sortOrder;
   _cat.shortDesc = req.body.shortDesc;
-  _cat.subItems = {};
   var _sub = JSON.parse(req.body.subItems);
 
   for (var i = 0; i < _sub.length; i++){
     var subItem = _sub[i];
     var subItemObj = {
       name: subItem['name'],
+      sortOrder: subItem['sortOrder'],
       videos: []
     }
 
@@ -58,6 +59,7 @@ exports.postProductionCategory = function(req, res) {
       }
       subItemObj.videos.push(videoObj);
     } 
+
     _cat.subItems.push(subItemObj);
   } 
   
@@ -76,7 +78,6 @@ exports.putProductionCategory = function(req, res) {
   Category.findById({_id: req.params.id}, function(err, category) {
     if (err)
       res.send(err);
-
 
     res.json(category);
   });
