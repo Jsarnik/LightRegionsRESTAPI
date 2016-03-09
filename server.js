@@ -15,7 +15,7 @@ var oauth2Controller = require('./controllers/oauth2');
 //mongoose.connect('mongodb://localhost:27017/lightregions');
 
 // Connect to the lightregions MongoDB on mLab [Heroku]
-mongoose.connect('mongodb://db_user:password@ds045714.mlab.com.com:45714/heroku_85pg7kjb');
+mongoose.connect('mongodb://db_user:password@ds045714.mlab.com:45714/heroku_85pg7kjb');
 
 // Create our Express application
 var app = express();
@@ -41,7 +41,7 @@ var router = express.Router();
 //Add routed endpoints
 //endpoint for /production category top level
 router.route('/ProductionCategory')
-	.get(authController.isAuthenticated, categoryController.getAllProductionCategories)
+	.get(categoryController.getAllProductionCategories)
   .post(authController.isAuthenticated, categoryController.postProductionCategory)
 
 //endpoint for production category specific
