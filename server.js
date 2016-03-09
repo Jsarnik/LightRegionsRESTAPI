@@ -41,7 +41,7 @@ var router = express.Router();
 //Add routed endpoints
 //endpoint for /production category top level
 router.route('/ProductionCategory')
-	.get(categoryController.getAllProductionCategories)
+	.get(authController.isAuthenticated, categoryController.getAllProductionCategories)
   .post(authController.isAuthenticated, categoryController.postProductionCategory)
 
 //endpoint for production category specific
@@ -52,8 +52,8 @@ router.route('/ProductionCategory/:id')
 
 //endpoint for /users 
 router.route('/users')
-	.get(userController.getUsers)
-	.post(userController.postUsers)
+	.get(authController.isAuthenticated, userController.getUsers)
+	.post(authController.isAuthenticated, userController.postUsers)
 
 //endpoint for /clients
 router.route('/clients')
